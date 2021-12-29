@@ -93,3 +93,32 @@ footer {
     flex-direction: column;
     width: 150px;
 }
+
+/* Skills
+------------------------------*/
+.skills-container .inputs{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+.skills-container button {
+    text-align: center;
+    width: 50px;
+}
+.skills-container label {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* BOTTOM CONTAINER
+------------------------------*/
+.bottom-container {
+    margin-top: 50px;
+}
+.damage-container {
+    display: flex;
+    justify-content: center;
+}
+.summary-container {
+    margin-top: 15px;
+}

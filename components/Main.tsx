@@ -1,4 +1,5 @@
 import React from 'react'
+import BottomContainer from './BottomContainer'
 import TopContainer from './TopContainer'
 
 const Main = () => {
@@ -7,10 +8,7 @@ const Main = () => {
             <h1>MapleLegends Stuff</h1>
             <div className='input-tables'>
                 <TopContainer />
-                <div className="bottom-container">
-                    <div className="result-container">
-                    </div>
-                </div>
+                <BottomContainer />
             </div>
         </div>
     )
