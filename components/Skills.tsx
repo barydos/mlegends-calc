@@ -2,7 +2,7 @@ import React from 'react'
 
 const Skills = () => {
     return (
-        <div className='skills-container'>
+        <div className='skills-container card'>
             <div className='inputs'>
                 <label htmlFor="">
                     Skill*<input type="text" name="" id="" />

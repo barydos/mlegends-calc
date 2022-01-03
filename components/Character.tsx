@@ -39,7 +39,7 @@ const Character = () => {
         { id: 5, title: 'Pirate', disabled: true }
     ]
     return (
-        <div className='character-container'>
+        <div className='character-container card'>
             <select name="job" id="job">
                 <option value="0" key="0" hidden>Select class</option>
                 {jobs.map(job => (

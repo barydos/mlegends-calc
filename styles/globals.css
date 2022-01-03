@@ -122,3 +122,10 @@ footer {
 .summary-container {
     margin-top: 15px;
 }
+
+.card {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5%;
+    box-shadow: 0 0 5px #d3d3d3;
+}
