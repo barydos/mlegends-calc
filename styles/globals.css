@@ -66,32 +66,51 @@ footer {
 .top-container {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: flex-start;
+
+    margin: 0 auto;
+    width: 60%;
+    /* border: 1px solid red; */
+}
+
+.card {
+    padding: 30px;
+    margin: 10px;
+    border-radius: 5%;
+    box-shadow: 0 0 5px #d3d3d3;
+}
+
+.top-container .card {
+    flex: 1 1 0px;
 }
 
 /* Mobs 
 ------------------------------*/
 .mob-container {
-    --mob-width: 200px;
+    /* --mob-width: 200px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    width: fit-content;
-    min-width: var(--mob-width);
+    /* width: fit-content;
+    min-width: var(--mob-width); */
     /* border: 1px solid red; */
 }
-.mob-container select {
+/* .mob-container select {
     width: var(--mob-width);
+} */
+.dropdown {
+    width: 75%;
 }
-
 /* Character
 ------------------------------*/
 .character-container {
     display: flex;
     flex-direction: column;
     width: 150px;
+
+    /* border: 1px solid green; */
 }
 
 /* Skills
@@ -121,11 +140,4 @@ footer {
 }
 .summary-container {
     margin-top: 15px;
-}
-
-.card {
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5%;
-    box-shadow: 0 0 5px #d3d3d3;
 }

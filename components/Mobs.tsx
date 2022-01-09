@@ -1,27 +1,31 @@
 import React, { useState, useContext } from 'react'
 import { Mob, mobs } from '../data/mobs'
 import { InfoContext } from '../contexts/InfoContext';
+import Select, { SingleValue } from 'react-select'
+
+
+interface Option {
+    id: string,
+    value: string,
+    label: string
+}
 
 const Mobs = () => {
+    
     const {info, setInfo} = useContext(InfoContext);
     const [mobObj, setMobObj] = useState<Mob | null>(null)
 
-    const selectMob = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedMob = mobs.find(mob => mob.id === event.target.value) || null
+    const handleMob = (e: SingleValue<Option>) => {
+        const selectedMob = mobs.find(mob => mob.id === e.id) || null;
         if (selectedMob) {
             setInfo({...info, monster: {...selectedMob}})
         }
         setMobObj(selectedMob)
-    }
+    }    
 
     return (
         <div className='mob-container card'>
-            <select id="mob-list" onChange={selectMob}>
-                <option key={0} value={0} hidden>Select monster</option>
-                {mobs && mobs.map(mob => (
-                    <option key={mob.id} value={mob.id}>{mob.text}</option>
-                ))}
-            </select>
+            <Select className='dropdown' options={mobs.map(mob => ({ id: mob.id, value: mob.text, label: mob.text}))} onChange={handleMob} placeholder='Select monster'/>
             { mobObj && (
                 <div className="mob-card">
                     <div className="mob-img" style={{ margin: '15px 0'}}>
