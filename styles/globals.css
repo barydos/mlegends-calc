@@ -117,28 +117,50 @@ footer {
 .stats-container {
     display: flex;
     flex-direction: column;
-
     padding: 10px;
 }
-
-.stats-container input {
-    margin-left: 10px;
+.stats-container .row > label {
+    text-align: right;
 }
+.stats-container .row { 
+    margin-bottom: 10px;
+}
+.stats-container .row-group {
+    margin-top: 15px;
+}
+.stats-container .form-group {
+    margin-top: 15px;
+}
+/* .stats-container .form-row {
+    justify-content: flex-end;
+}
+.stats-container .form-row > input,
+.stats-container .form-row > label {
+    flex: 1 1 150px;
+} */
+.form-row {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+/* .stats-container input {
+    margin-left: 10px;
+} */
 
-.stats-group {
+/* .stats-group {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-}
+} */
 
-.stats-ap {
+/* .stats-ap {
     margin-bottom: 10px;
-}
+} */
 
-.stats-ap label,
+/* .stats-ap label,
 .stats-stats label {
     margin-bottom: 5px;
-}
+} */
 
 /* Skills
 ------------------------------*/
