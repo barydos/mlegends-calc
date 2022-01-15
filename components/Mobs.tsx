@@ -1,50 +1,79 @@
-import React, { useState, useContext } from 'react'
-import { Mob, mobs } from '../data/mobs'
+import React, { useState, useEffect, useContext } from 'react'
+import { Mob, mobs as importedMobs } from '../data/mobs'
 import { InfoContext } from '../contexts/InfoContext';
 import Select, { SingleValue } from 'react-select'
 
-
-interface Option {
-    id: string,
-    value: string,
-    label: string
+interface MobLabeled extends Mob {
+    value?: string,
+    label?: string
 }
 
-const Mobs = () => {
-    
-    const {info, setInfo} = useContext(InfoContext);
-    const [mobObj, setMobObj] = useState<Mob | null>(null)
+let mobs: MobLabeled[] = importedMobs;
+for (let i in mobs) {
+    mobs[i].label = mobs[i].text;
+    mobs[i].value = mobs[i].text;
+}
 
-    const handleMob = (e: SingleValue<Option>) => {
-        const selectedMob = mobs.find(mob => mob.id === e.id) || null;
+const MobCard = ({ mobId }: { mobId: string | null }) => {
+
+    const { info, setInfo } = useContext(InfoContext);
+    const [mob, setMob] = useState<Mob | null>(null)
+
+    useEffect(() => {
+        if (!mobId) return;
+
+        const selectedMob = mobs.find(mob => mob.id === mobId);
         if (selectedMob) {
-            setInfo({...info, monster: {...selectedMob}})
+            setMob(selectedMob);
+            setInfo({...info, monster: selectedMob });
         }
-        setMobObj(selectedMob)
-    }    
+    }, [mobId])
 
     return (
-        <div className='mob-container card'>
-            <Select className='dropdown' options={mobs.map(mob => ({ id: mob.id, value: mob.text, label: mob.text}))} onChange={handleMob} placeholder='Select monster'/>
-            { mobObj && (
+        <>
+            {mob && (
                 <div className="mob-card">
-                    <div className="mob-img" style={{ margin: '15px 0'}}>
-                        <img src={`images/${mobObj.id}.png`} alt="" />
+                    <div className="mob-img" style={{ margin: '15px 0' }}>
+                        <img src={`images/${mob.id}.png`} alt="" />
                     </div>
                     <div className="mob-details">
                         <table>
                             <tbody>
-                                <tr><td><strong>Name</strong></td><td>{mobObj.text}</td></tr>
-                                <tr><td><strong>Level</strong></td><td>{mobObj.level}</td></tr>
-                                <tr><td><strong>HP</strong></td><td>{mobObj.hp}</td></tr>
+                                <tr><td><strong>Name</strong></td><td>{mob.text}</td></tr>
+                                <tr><td><strong>Level</strong></td><td>{mob.level}</td></tr>
+                                <tr><td><strong>HP</strong></td><td>{mob.hp.toLocaleString()}</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                )
-            }
+            )}
+        </>
+    )
+}
+
+const Mobs = () => {
+
+    const mobs = importedMobs;
+    const [mobId, setMobId] = useState<string | null>(null)
+
+    const handleMob = (e: SingleValue<Mob>) => {
+        if (!e) return;
+        setMobId(e.id);
+    }
+
+    return (
+        <div className='mob-container card'>
+            <Select
+                instanceId='mob-dropdown'
+                className='dropdown'
+                options={mobs}
+                onChange={handleMob}
+                placeholder='Select monster' />
+
+            {mobId && <MobCard mobId={mobId} />}
+
         </div>
     )
 }
 
-export default Mobs
+export default Mobs;

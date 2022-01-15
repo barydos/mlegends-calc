@@ -3,29 +3,32 @@ import React from 'react'
 const Stats = () => {
 
     return (
-        <div style={{width:'200px'}}>
-            <label htmlFor="">
-                STR<input type="number" name="" id="" />
-            </label>
-            <label htmlFor="">
-                DEX<input type="number" name="" id="" />
-            </label>
-            <label htmlFor="">
-                INT<input type="number" name="" id="" />
-            </label>
-            <label htmlFor="">
-                LUK<input type="number" name="" id="" />
-            </label>
-
-            <label htmlFor="">
-                Attack<input type="number" name="" id="" />
-            </label>
-            <label htmlFor="">
-                Magic<input type="number" name="" id="" />
-            </label>
-            <label htmlFor="">
-                Accuracy<input type="number" name="" id="" />
-            </label>
+        <div className='stats-container'>
+            <div className="stats-ap stats-group">
+                <label htmlFor="">
+                    STR<input type="number" name="" id="" />
+                </label>
+                <label htmlFor="">
+                    DEX<input type="number" name="" id="" />
+                </label>
+                <label htmlFor="">
+                    INT<input type="number" name="" id="" />
+                </label>
+                <label htmlFor="">
+                    LUK<input type="number" name="" id="" />
+                </label>
+            </div>
+            <div className="stats-stats stats-group">
+                <label htmlFor="">
+                    Attack<input type="number" name="" id="" />
+                </label>
+                <label htmlFor="">
+                    Magic<input type="number" name="" id="" />
+                </label>
+                <label htmlFor="">
+                    Accuracy<input type="number" name="" id="" />
+                </label>
+            </div>
         </div>
     )
 }
