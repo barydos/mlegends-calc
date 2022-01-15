@@ -23,7 +23,7 @@ const Stats = () => {
 
     return (
         <div className='stats-container'>
-            <div className="row-group">
+            <div className='row-group'>
                 <Row>
                     <Label sm={5} for='char-lvl'>Level</Label>
                     <Col sm={{ offset: 1, size: 6 }}>
@@ -31,7 +31,7 @@ const Stats = () => {
                     </Col>
                 </Row>
             </div>
-            <div className="row-group">
+            <div className='row-group'>
                 <Row>
                     <Label sm={5} for='char-str'>STR</Label>
                     <Col sm={{ offset: 1, size: 6 }}>
@@ -57,7 +57,7 @@ const Stats = () => {
                     </Col>
                 </Row>
             </div>
-            <div className="row-group">
+            <div className='row-group'>
                 <Row>
                     <Label sm={5} for='char-att'>Attack</Label>
                     <Col sm={{ offset: 1, size: 6 }}>
@@ -77,11 +77,9 @@ const Stats = () => {
                     </Col>
                 </Row>
             </div>
-            <div className="row-group row">
-                <Col sm={{ offset: 6, size: 6 }} className='d-grid'>
-                    <Button color='primary' outline size="md" 
-                        onClick={()=>console.log('TODO: save character settings to cache')}>Save</Button>
-                </Col>
+            <div className='mt-2 d-flex justify-content-end'>
+                <Button color='primary' outline size='md' 
+                    onClick={()=>console.log('TODO: save character settings to cache')}>Save</Button>
             </div>
         </div>
     )
