@@ -8,9 +8,9 @@ interface MobLabeled extends Mob {
     label?: string
 }
 
-let mobs: MobLabeled[] = importedMobs;
+let mobs: MobLabeled[] = importedMobs.sort((a,b) => a.level > b.level ? 1 : -1);
 for (let i in mobs) {
-    mobs[i].label = mobs[i].text;
+    mobs[i].label = `(${mobs[i].level}) ${mobs[i].text}`;
     mobs[i].value = mobs[i].text;
 }
 
@@ -25,7 +25,7 @@ const MobCard = ({ mobId }: { mobId: string | null }) => {
         const selectedMob = mobs.find(mob => mob.id === mobId);
         if (selectedMob) {
             setMob(selectedMob);
-            setInfo({...info, monster: selectedMob });
+            setInfo({ ...info, monster: selectedMob });
         }
     }, [mobId])
 
@@ -33,7 +33,7 @@ const MobCard = ({ mobId }: { mobId: string | null }) => {
         <>
             {mob && (
                 <div className="mob-card">
-                    <div className="mob-img" style={{ margin: '15px 0' }}>
+                    <div className="mob-img" style={{ textAlign: 'center', margin: '15px 0' }}>
                         <img src={`images/${mob.id}.png`} alt="" />
                     </div>
                     <div className="mob-details">
