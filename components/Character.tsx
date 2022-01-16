@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
 import { Button, Col, Input, Label, Row } from 'reactstrap';
-import {InfoContext} from '../contexts/InfoContext';
+import { InfoContext } from '../contexts/InfoContext';
 
 const Stats = () => {
     const { info, setInfo } = useContext(InfoContext);
@@ -25,8 +25,8 @@ const Stats = () => {
     const handleAcc = (e: ChangeEvent<HTMLInputElement>) => setAcc(parseInt(e.target.value));
 
     useEffect(() => {
-        setInfo({...info, character: { lvl, str, dex, int ,luk, att, magic, acc }});
-    }, [lvl,str,dex,int,luk,att,magic,acc]);
+        setInfo({ ...info, character: { lvl, str, dex, int, luk, att, magic, acc } });
+    }, [lvl, str, dex, int, luk, att, magic, acc]);
 
     return (
         <div className='stats-container'>
@@ -85,8 +85,8 @@ const Stats = () => {
                 </Row>
             </div>
             <div className='mt-2 d-flex justify-content-end'>
-                <Button color='primary' outline size='md' 
-                    onClick={()=>console.log('TODO: save character settings to cache')}>Save</Button>
+                <Button type='button' color='primary' outline size='md'
+                    onClick={() => console.log('TODO: save character settings to cache')}>Save</Button>
             </div>
         </div>
     )
@@ -98,14 +98,23 @@ interface Job {
     isDisabled: boolean
 }
 
+const enum Jobs {
+    WARRIOR = 1,
+    BOWMAN = 2,
+    MAGICIAN = 3,
+    THIEF = 4,
+    PIRATE = 5
+
+}
+
 const Character = () => {
 
     const jobs = [
-        { value: 1, label: 'Warrior', isDisabled: true },
-        { value: 2, label: 'Bowman', isDisabled: true },
-        { value: 3, label: 'Magician', isDisabled: false },
-        { value: 4, label: 'Thief', isDisabled: true },
-        { value: 5, label: 'Pirate', isDisabled: true }
+        { value: Jobs.WARRIOR, label: 'Warrior', isDisabled: true },
+        { value: Jobs.BOWMAN, label: 'Bowman', isDisabled: true },
+        { value: Jobs.MAGICIAN, label: 'Magician', isDisabled: false },
+        { value: Jobs.THIEF, label: 'Thief', isDisabled: true },
+        { value: Jobs.PIRATE, label: 'Pirate', isDisabled: true }
     ]
     const [job, setJob] = useState<number | null>(null);
     const handleJob = (e: SingleValue<Job>) => {
@@ -114,7 +123,7 @@ const Character = () => {
 
     return (
         <div className='character-container card'>
-            <Select instanceId='character-job' options={jobs} value={jobs.find(item => item.value === job)} 
+            <Select instanceId='character-job' options={jobs} value={jobs.find(item => item.value === job)}
                 onChange={handleJob} placeholder='Select class' />
             <Stats />
         </div>
