@@ -34,7 +34,7 @@ const MobCard = ({ mobId }: { mobId: string | null }) => {
             {mob && (
                 <div className="mob-card">
                     <div className="mob-img" style={{ textAlign: 'center', margin: '15px 0' }}>
-                        <img src={`images/${mob.id}.png`} alt="" />
+                        <img src={`images/${mob.id}.png`} alt="" style={{ maxWidth: '100%', maxHeight: '100%'}}/>
                     </div>
                     <div className="mob-details">
                         <table>
