@@ -34,6 +34,8 @@ export interface InfoContextInterface {
 
 interface InfoStateManager {
     info: InfoContextInterface;
-    setInfo: (arg: InfoContextInterface) => void
+    setInfo: (arg: InfoContextInterface) => void,
+    error: boolean,
+    setError: (arg: boolean) => void
 }
-export const InfoContext = createContext<InfoStateManager>({ info: {}, setInfo: () => {}});
+export const InfoContext = createContext<InfoStateManager>({ info: {}, setInfo: () => {}, error: false, setError: () => {} });

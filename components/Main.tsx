@@ -11,6 +11,7 @@ import { SETTINGS } from '../data/constants';
 const Main = () => {
 
     const [info, setInfo] = useState<InfoContextInterface>({});
+    const [error, setError] = useState(false);
     const [loaded, setLoaded] = useState(false);
     
     useEffect(() => {
@@ -26,7 +27,7 @@ const Main = () => {
         <div className='main'>
             <h1>MapleLegends Stuff</h1>
             
-            <InfoContext.Provider value={{ info, setInfo }}>
+            <InfoContext.Provider value={{ info, setInfo, error, setError }}>
                 <div className="top-container">
                     <Character character={info.character || null} loaded={loaded}/>
                     <Skills skill={info.skill || null} loaded={loaded} />

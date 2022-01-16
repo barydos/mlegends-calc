@@ -1,18 +1,20 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
-import { Button, Col, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap'
+import { Button, Col, FormFeedback, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap'
 import { Element, InfoContext, Skill } from '../contexts/InfoContext';
 
 const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => {
-    const { info, setInfo } = useContext(InfoContext);
+    const { info, setInfo, error } = useContext(InfoContext);
 
     const [name, setName] = useState('');
-    const [attack, setAttack] = useState(1);
-    const [mastery, setMastery] = useState(1);
+    const [attack, setAttack] = useState(0);
+    const [mastery, setMastery] = useState(0);
     const [element, setElement] = useState(Element.NEUTRAL)
 
     const handleName = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const handleAttack = (e: ChangeEvent<HTMLInputElement>) => setAttack(parseInt(e.target.value));
-    const handleMastery = (e: ChangeEvent<HTMLInputElement>) => setMastery(parseInt(e.target.value));
+    const handleMastery = (e: ChangeEvent<HTMLInputElement>) => {
+        setMastery(parseInt(e.target.value)/100);
+    }
 
     useEffect(() => {
         if (skill && loaded) {
@@ -25,7 +27,7 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
 
     useEffect(() => {
         setInfo({ ...info, skill: { name, attack, mastery, element } });
-    }, [name, attack, mastery, element])
+    }, [name, attack, mastery, element]);
 
     return (
         <div className='skills-container card'>
@@ -41,7 +43,8 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
                 <Row>
                     <Label sm={4} for='skill-attack'>Attack</Label>
                     <Col sm={8}>
-                        <Input id='skill-attack' value={attack} type='number' min={1} onChange={handleAttack} />
+                        <Input id='skill-attack' value={attack} type='number' min={1} onChange={handleAttack} invalid={error}/>
+                        <FormFeedback invalid>Please input a value</FormFeedback>
                     </Col>
                 </Row>
             </div>
@@ -50,7 +53,7 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
                     <Label sm={4} for='skill-mastery'>Mastery</Label>
                     <Col sm={8}>
                         <InputGroup>
-                            <Input id='skill-master' value={mastery} type='number' min={1} onChange={handleMastery} />
+                            <Input id='skill-master' value={mastery * 100} type='number' min={1} onChange={handleMastery} />
                             <InputGroupText>%</InputGroupText>
                         </InputGroup>
                     </Col>
