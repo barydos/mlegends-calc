@@ -15,7 +15,16 @@ export interface Character {
 export interface Skill {
     name: string,
     attack: number,
-    mastery: number
+    mastery: number,
+    element: Element
+}
+export enum Element {
+    NEUTRAL = 0,
+    HOLY = 1,
+    ICE = 2,
+    LIGHTNING = 3,
+    FIRE = 4,
+    POISON = 5,
 }
 export interface InfoContextInterface {
     character?: Character;

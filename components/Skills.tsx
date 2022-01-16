@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { Button, Col, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap'
-import { InfoContext, Skill } from '../contexts/InfoContext';
+import { Element, InfoContext, Skill } from '../contexts/InfoContext';
 
 const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => {
     const { info, setInfo } = useContext(InfoContext);
@@ -8,6 +8,7 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
     const [name, setName] = useState('');
     const [attack, setAttack] = useState(1);
     const [mastery, setMastery] = useState(1);
+    const [element, setElement] = useState(Element.NEUTRAL)
 
     const handleName = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const handleAttack = (e: ChangeEvent<HTMLInputElement>) => setAttack(parseInt(e.target.value));
@@ -18,12 +19,13 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
             setName(skill.name);
             setAttack(skill.attack);
             setMastery(skill.mastery);
+            setElement(skill.element);
         }
     }, [loaded]);
 
     useEffect(() => {
-        setInfo({ ...info, skill: { name, attack, mastery } });
-    }, [name, attack, mastery])
+        setInfo({ ...info, skill: { name, attack, mastery, element } });
+    }, [name, attack, mastery, element])
 
     return (
         <div className='skills-container card'>
@@ -51,6 +53,65 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
                             <Input id='skill-master' value={mastery} type='number' min={1} onChange={handleMastery} />
                             <InputGroupText>%</InputGroupText>
                         </InputGroup>
+                    </Col>
+                </Row>
+            </div>
+            <div className="row-group">
+                <Row className='mb-2'>
+                    <Col sm={4} style={{ textAlign: 'right' }}>Element</Col>
+                </Row>
+                <Row>
+                    <Col sm={{ offset: 1, size: 5 }}>
+                        <div>
+                            <Input id="ele-neutral" name="element" type="radio" 
+                                onChange={() => setElement(Element.NEUTRAL)} 
+                                checked={element === Element.NEUTRAL}/> {' '}
+                            <Label check for="ele-neutral">Neutral</Label>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div>
+                            <Input id="ele-holy" name="element" type="radio" 
+                                onChange={() => setElement(Element.HOLY)} 
+                                checked={element === Element.HOLY} /> {' '}
+                            <Label check for="ele-holy">Holy</Label>
+                        </div>
+                    </Col>
+                </Row>
+                <Row className='element-group'>
+                    <Col sm={{ offset: 1, size: 5 }}>
+                        <div>
+                            <Input id="ele-ice" name="element" type="radio" 
+                                onChange={() => setElement(Element.ICE)} 
+                                checked={element === Element.ICE} /> {' '}
+                            <Label check for="ele-ice">Ice</Label>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div>
+                            <Input id="ele-lightning" name="element" type="radio" 
+                                onChange={() => setElement(Element.LIGHTNING)} 
+                                checked={element === Element.LIGHTNING} /> {' '}
+                            <Label check for="ele-lightning">Lightning</Label>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={{ offset: 1, size: 5 }}>
+                        <div>
+                            <Input id="ele-fire" name="element" type="radio" 
+                                onChange={() => setElement(Element.FIRE)} 
+                                checked={element === Element.FIRE} /> {' '}
+                            <Label check for="ele-fire">Fire</Label>
+                        </div>
+                    </Col>
+                    <Col>
+                        <div>
+                            <Input id="ele-poison" name="element" type="radio" 
+                                onChange={() => setElement(Element.POISON)} 
+                                checked={element === Element.POISON} /> {' '}
+                            <Label check for="ele-poison">Poison</Label>
+                        </div>
                     </Col>
                 </Row>
             </div>
