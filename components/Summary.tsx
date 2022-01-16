@@ -50,7 +50,7 @@ const Summary = () => {
     useEffect(() => {
         setMin(0);
         setMax(0);
-    }, []);
+    }, [info.monster]);
 
     useEffect(() => {
         if (summaryRef && summaryRef.current && max && min && info.monster && !loading) {
