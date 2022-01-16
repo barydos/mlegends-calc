@@ -12,7 +12,9 @@ interface Character {
     acc: number
 }
 interface Skill {
-
+    name: string,
+    attack: number,
+    mastery: number
 }
 export interface InfoContextInterface {
     character?: Character;
