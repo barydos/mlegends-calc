@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { Button, Col, Input, Label, Row } from 'reactstrap'
-import { InfoContext } from '../contexts/InfoContext';
+import { InfoContext, Skill } from '../contexts/InfoContext';
 
-const Skills = () => {
+const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => {
     const { info, setInfo } = useContext(InfoContext);
 
     const [name, setName] = useState('');
@@ -12,6 +12,14 @@ const Skills = () => {
     const handleName = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const handleAttack = (e: ChangeEvent<HTMLInputElement>) => setAttack(parseInt(e.target.value));
     const handleMastery = (e: ChangeEvent<HTMLInputElement>) => setMastery(parseInt(e.target.value));
+
+    useEffect(() => {
+        if (skill && loaded) {
+            setName(skill.name);
+            setAttack(skill.attack);
+            setMastery(skill.mastery);
+        }
+    }, [loaded]);
 
     useEffect(() => {
         setInfo({...info, skill: { name, attack, mastery }});

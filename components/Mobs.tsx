@@ -9,6 +9,7 @@ interface MobLabeled extends Mob {
 }
 
 let mobs: MobLabeled[] = importedMobs.sort((a,b) => a.level > b.level ? 1 : -1);
+// helper to set options array for React-Select dropdown
 for (let i in mobs) {
     mobs[i].label = `(${mobs[i].level}) ${mobs[i].text}`;
     mobs[i].value = mobs[i].text;
@@ -55,7 +56,7 @@ const MobCard = ({ mobId }: { mobId: string | null }) => {
     )
 }
 
-const Mobs = () => {
+const Mobs = ({ mob, loaded }: { mob: Mob | null, loaded: boolean }) => {
 
     const mobs = importedMobs;
     const [mobId, setMobId] = useState<string | null>(null)
@@ -65,17 +66,23 @@ const Mobs = () => {
         setMobId(e.id);
     }
 
+    useEffect(() => {
+        if (mob && loaded) {
+            setMobId(mob.id);
+        }
+    }, [loaded]);
+
     return (
         <div className='mob-container card'>
             <Select
                 instanceId='mob-dropdown'
                 className='dropdown'
+                value={mobs.find(mob => mob.id === mobId)}
                 options={mobs}
                 onChange={handleMob}
                 placeholder='Select monster' />
 
             {mobId && <MobCard mobId={mobId} />}
-
         </div>
     )
 }

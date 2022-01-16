@@ -1,7 +1,8 @@
 import { createContext } from "react";
 import { Mob } from "../data/mobs"
 
-interface Character {
+export interface Character {
+    job: number | null,
     lvl: number,
     str: number,
     dex: number,
@@ -11,7 +12,7 @@ interface Character {
     magic: number,
     acc: number
 }
-interface Skill {
+export interface Skill {
     name: string,
     attack: number,
     mastery: number
