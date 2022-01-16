@@ -12,9 +12,7 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
 
     const handleName = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
     const handleAttack = (e: ChangeEvent<HTMLInputElement>) => setAttack(parseInt(e.target.value));
-    const handleMastery = (e: ChangeEvent<HTMLInputElement>) => {
-        setMastery(parseInt(e.target.value)/100);
-    }
+    const handleMastery = (e: ChangeEvent<HTMLInputElement>) => setMastery(parseInt(e.target.value)/100);
 
     useEffect(() => {
         if (skill && loaded) {
@@ -43,8 +41,8 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
                 <Row>
                     <Label sm={4} for='skill-attack'>Attack</Label>
                     <Col sm={8}>
-                        <Input id='skill-attack' value={attack} type='number' min={1} onChange={handleAttack} invalid={error}/>
-                        <FormFeedback invalid>Please input a value</FormFeedback>
+                        <Input id='skill-attack' value={attack} type='number' min={1} onChange={handleAttack} invalid={!attack && error}/>
+                        <FormFeedback>Please input a value</FormFeedback>
                     </Col>
                 </Row>
             </div>

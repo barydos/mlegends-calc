@@ -4,7 +4,7 @@ const NavBar = () => {
     return (
         <nav>
             <div className="logo">
-                <h1>Logo</h1>
+                <img src='images/ml-logo.png'/>
             </div>
             <div className="nav-item">
                 <a href="#">Home</a>

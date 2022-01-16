@@ -25,7 +25,7 @@ const Main = () => {
 
     return (
         <div className='main'>
-            <h1>MapleLegends Stuff</h1>
+            <h1>Damage Calculator</h1>
             
             <InfoContext.Provider value={{ info, setInfo, error, setError }}>
                 <div className="top-container">
