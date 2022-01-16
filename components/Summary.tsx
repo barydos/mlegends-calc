@@ -23,7 +23,7 @@ const Summary = () => {
 
     return (
         <div className='summary-container d-flex flex-column align-items-center'>
-            <div className="button-group my-2">
+            <div className="button-group">
                 <Button type='button' color='danger' outline onClick={clearCache}>Clear cache</Button>
                 <Button type='button' className='ms-2' color='primary' outline onClick={performCalc}>Calculate</Button>
             </div>

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
-import { Button, Col, Input, Label, Row } from 'reactstrap'
+import { Button, Col, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap'
 import { InfoContext, Skill } from '../contexts/InfoContext';
 
 const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => {
@@ -22,7 +22,7 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
     }, [loaded]);
 
     useEffect(() => {
-        setInfo({...info, skill: { name, attack, mastery }});
+        setInfo({ ...info, skill: { name, attack, mastery } });
     }, [name, attack, mastery])
 
     return (
@@ -31,7 +31,7 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
                 <Row>
                     <Label sm={4} for='skill-name'>Skill</Label>
                     <Col sm={8}>
-                        <Input id='skill-name' value={name} type='text' onChange={handleName}/>
+                        <Input id='skill-name' value={name} type='text' onChange={handleName} />
                     </Col>
                 </Row>
             </div>
@@ -39,7 +39,7 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
                 <Row>
                     <Label sm={4} for='skill-attack'>Attack</Label>
                     <Col sm={8}>
-                        <Input id='skill-attack' value={attack} type='number' min={1} onChange={handleAttack}/>
+                        <Input id='skill-attack' value={attack} type='number' min={1} onChange={handleAttack} />
                     </Col>
                 </Row>
             </div>
@@ -47,13 +47,16 @@ const Skills = ({ skill, loaded }: { skill: Skill | null, loaded: boolean }) => 
                 <Row>
                     <Label sm={4} for='skill-mastery'>Mastery</Label>
                     <Col sm={8}>
-                        <Input id='skill-master' value={mastery} type='number' min={1} onChange={handleMastery} />
+                        <InputGroup>
+                            <Input id='skill-master' value={mastery} type='number' min={1} onChange={handleMastery} />
+                            <InputGroupText>%</InputGroupText>
+                        </InputGroup>
                     </Col>
                 </Row>
             </div>
             <div className='mt-2 d-flex justify-content-end'>
-                <Button color='primary' outline size='md' 
-                    onClick={()=>console.log('TODO: save skill settings to cache')}>Save</Button>
+                <Button color='primary' outline size='md'
+                    onClick={() => console.log('TODO: save skill settings to cache')}>Save</Button>
             </div>
         </div>
     )
