@@ -22,7 +22,7 @@ const Summary = () => {
         setError(false);
         setLoading(true);
 
-        if (!info.character || !info.monster || !info.skill) {
+        if (!info.character || !info.monster || !info.skill || !info.weapon) {
             setError(true);
             return;
         }
@@ -30,14 +30,15 @@ const Summary = () => {
             setError(true);
             return
         }
-        // console.log(info);
+        console.log(info);
         localStorage.setItem(SETTINGS, JSON.stringify(info));
 
         // perform calculations
         const {
             character: { lvl, str, dex, int, luk, att, magic, acc},
             skill: { name, attack, mastery, element },
-            monster: { text: monsterName, level: monsterLvl, hp, elem: monsterElem, wdef, mdef, avoid, undead }
+            monster: { text: monsterName, level: monsterLvl, hp, elem: monsterElem, wdef, mdef, avoid, undead },
+            weapon: { elem, multiplier }
          } = info;
         
         let calcMax, calcMin = 0;

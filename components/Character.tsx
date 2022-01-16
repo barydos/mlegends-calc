@@ -3,7 +3,7 @@ import Select, { SingleValue } from 'react-select';
 import { Button, Col, Input, Label, Row } from 'reactstrap';
 import { Character, InfoContext } from '../contexts/InfoContext';
 
-const enum Jobs {
+export const enum Jobs {
     WARRIOR = 1,
     BOWMAN = 2,
     MAGICIAN = 3,

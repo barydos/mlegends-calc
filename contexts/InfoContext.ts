@@ -26,10 +26,18 @@ export enum Element {
     FIRE = 4,
     POISON = 5,
 }
+export interface Weapon {
+    id: number,
+    multiplier: {
+        [element: number]: number
+    }
+}
+
 export interface InfoContextInterface {
     character?: Character;
     skill?: Skill;
     monster?: Mob;
+    weapon?: Weapon;
 }
 
 interface InfoStateManager {

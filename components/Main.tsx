@@ -7,6 +7,7 @@ import Summary from './Summary';
 ;
 import { InfoContext, InfoContextInterface } from '../contexts/InfoContext';
 import { SETTINGS } from '../data/constants';
+import Weapon from './Weapon';
 
 const Main = () => {
 
@@ -28,9 +29,12 @@ const Main = () => {
             <h1>Damage Calculator</h1>
             
             <InfoContext.Provider value={{ info, setInfo, error, setError }}>
-                <div className="top-container">
+                <div className="card-grid">
                     <Character character={info.character || null} loaded={loaded}/>
-                    <Skills skill={info.skill || null} loaded={loaded} />
+                    <div className="grid-second-col">
+                        <Skills skill={info.skill || null} loaded={loaded} />
+                        <Weapon weapon={info.weapon || null} loaded={loaded} />
+                    </div>
                     <Mobs mob={info.monster || null} loaded={loaded} />
                 </div>
                 <Summary />
