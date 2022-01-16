@@ -19,13 +19,17 @@ const MobCard = ({ mobId }: { mobId: string | null }) => {
     const { info, setInfo } = useContext(InfoContext);
     const [mob, setMob] = useState<Mob | null>(null)
 
+    const storeMobContext = (mobContext: Mob) => {
+        setInfo({...info, monster: mobContext});
+    }
+
     useEffect(() => {
         if (!mobId) return;
 
         const selectedMob = mobs.find(mob => mob.id === mobId);
         if (selectedMob) {
             setMob(selectedMob);
-            setInfo({ ...info, monster: selectedMob });
+            storeMobContext(selectedMob);
         }
     }, [mobId])
 

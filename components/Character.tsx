@@ -1,8 +1,11 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Select, { SingleValue } from 'react-select';
 import { Button, Col, Input, Label, Row } from 'reactstrap';
+import {InfoContext} from '../contexts/InfoContext';
 
 const Stats = () => {
+    const { info, setInfo } = useContext(InfoContext);
+
     const [lvl, setLvl] = useState(1);
     const [str, setStr] = useState(4);
     const [dex, setDex] = useState(4);
@@ -20,6 +23,10 @@ const Stats = () => {
     const handleAtt = (e: ChangeEvent<HTMLInputElement>) => setAtt(parseInt(e.target.value));
     const handleMagic = (e: ChangeEvent<HTMLInputElement>) => setMagic(parseInt(e.target.value));
     const handleAcc = (e: ChangeEvent<HTMLInputElement>) => setAcc(parseInt(e.target.value));
+
+    useEffect(() => {
+        setInfo({...info, character: { lvl, str, dex, int ,luk, att, magic, acc }});
+    }, [lvl,str,dex,int,luk,att,magic,acc]);
 
     return (
         <div className='stats-container'>
