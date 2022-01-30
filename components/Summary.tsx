@@ -38,7 +38,7 @@ const Summary = () => {
             character: { lvl, str, dex, int, luk, att, magic, acc},
             skill: { name, attack, mastery, element },
             monster: { text: monsterName, level: monsterLvl, hp, elem: monsterElem, wdef, mdef, avoid, undead },
-            weapon: { elem, multiplier }
+            weapon: { multiplier }
          } = info;
         
         let calcMax, calcMin = 0;
